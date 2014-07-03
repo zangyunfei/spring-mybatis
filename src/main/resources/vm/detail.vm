@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<META HTTP-EQUIV="expires" CONTENT="${time}">
+<META HTTP-EQUIV="Last-Modified" CONTENT="${time}">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+
+<meta name="format-detection" content="telephone=no"/>
+<meta name="keywords" content="lenovo,rss,lenovo rss" />
+<title>lenovo rss</title>
+<style>
+ .articleContent {
+    font-size: 18px;
+    line-height: 27px;
+    margin-bottom: 10px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    padding-top: 10px;
+    text-align: justify;
+    }
+ .title_ {
+    -moz-text-decoration-color: -moz-use-text-color;
+    -moz-text-decoration-line: none;
+    -moz-text-decoration-style: solid;
+    font-family: 'iphonehei','simhei','Microsoft Yahei','Simsun';
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    padding-bottom: 10px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 15px;
+}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ 
+</head>
+<body>
+	<h2 class="title_">$!{title} </h2>
+	<p class="articleContent">$!{content} </p>
+</body>
+</html>

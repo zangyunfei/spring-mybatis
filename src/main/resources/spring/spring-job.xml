@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <!-- 工作的bean -->
+    <bean id="rssDetailJobService" class="com.zyf.springmybatis.job.RssDetailJob" />
+    <bean id="rssIndexJobService" class="com.zyf.springmybatis.job.RssIndexHtmlJob" />
+    <!-- job的配置开始 -->
+    <bean id="rssDetailJob"
+        class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="rssDetailJobService" />
+        </property>
+        <property name="targetMethod">
+            <value>processor</value>
+        </property>
+    </bean>
+    <bean id="rssIndexJob"
+        class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="rssIndexJobService" />
+        </property>
+        <property name="targetMethod">
+            <value>processor</value>
+        </property>
+    </bean>
+    <!-- 调度的配置开始 -->
+    <bean id="rssDetailJobTrigger"
+        class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="rssDetailJob" />
+        </property>
+        <property name="startDelay" value="1" />
+        <property name="cronExpression">
+            <value>0 0/1 * * * ?</value> <!-- 10分钟执行一次 -->
+        </property>
+    </bean>
+    <bean id="rssIndexJobTrigger"
+        class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="rssIndexJob" />
+        </property>
+        <property name="startDelay" value="1" />
+        <property name="cronExpression">
+            <value>0 0/1 * * * ?</value> <!-- 10分钟执行一次 -->
+        </property>
+    </bean>
+    <!-- 启动触发器的配置开始 -->
+    <bean name="startQuertz" lazy-init="false" autowire="no"
+        class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="rssDetailJobTrigger" />
+              <!--  <ref bean="rssIndexJobTrigger" /> --> 
+            </list>
+        </property>
+    </bean>
+</beans>

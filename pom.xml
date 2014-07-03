@@ -1,13 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.xingmai</groupId>
-    <artifactId>lenovoPortalAdmin</artifactId>
+
+    <groupId>com.zyf</groupId>
+    <artifactId>spring-mybaits</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <version.spring>3.2.5.RELEASE</version.spring>
+        <version.spring>3.0.7.RELEASE</version.spring>
     </properties>
     <dependencies>
         <dependency>
@@ -113,20 +114,15 @@
             <version>1.1.23</version>
         </dependency>
         <dependency>
-            <groupId>org.oracle</groupId>
-            <artifactId>ojdbc</artifactId>
-            <version>6.0</version>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.31</version>
         </dependency>
         <dependency>
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity</artifactId>
             <version>1.6.3</version>
             <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>com.xingmai</groupId>
-            <artifactId>util</artifactId>
-            <version>2.0</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -155,11 +151,6 @@
             <groupId>com.sleepycat</groupId>
             <artifactId>je</artifactId>
             <version>5.0.73</version>
-        </dependency>
-        <dependency>
-            <groupId>com.xingmai</groupId>
-            <artifactId>engineUtil</artifactId>
-            <version>1.1</version>
         </dependency>
     </dependencies>
     <profiles>
