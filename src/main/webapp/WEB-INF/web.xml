@@ -5,7 +5,10 @@
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:/spring/spring-config.xml,classpath:/spring/spring-dao.xml,classpath:/spring/spring-job.xml</param-value>
+        <param-value>
+        classpath:/spring/spring-config.xml,
+        classpath:/spring/spring-dao.xml
+        </param-value>
     </context-param>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

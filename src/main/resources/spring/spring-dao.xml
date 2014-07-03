@@ -15,16 +15,16 @@
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 		<property name="driverClass">
-			<value>oracle.jdbc.driver.OracleDriver</value>
+			<value>com.mysql.jdbc.Driver</value>
 		</property>
 		<property name="jdbcUrl">
-			<value>jdbc:oracle:thin:@119.188.3.38:1521:orcl</value>
+			<value><![CDATA[jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8]]></value>
 		</property>
 		<property name="user">
-			<value>repository</value>
+			<value>sample</value>
 		</property>
 		<property name="password">
-			<value>repository</value>
+			<value>sample</value>
 		</property>
 		<property name="minPoolSize">
 			<value>2</value>
