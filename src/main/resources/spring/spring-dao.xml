@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
-	xsi:schemaLocation="
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="
     http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context
@@ -12,58 +12,91 @@
     http://www.springframework.org/schema/aop
     http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-		destroy-method="close">
-		<property name="driverClass">
-			<value>com.mysql.jdbc.Driver</value>
-		</property>
-		<property name="jdbcUrl">
-			<value><![CDATA[jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8]]></value>
-		</property>
-		<property name="user">
-			<value>sample</value>
-		</property>
-		<property name="password">
-			<value>sample</value>
-		</property>
-		<property name="minPoolSize">
-			<value>2</value>
-		</property>
-		<property name="maxPoolSize">
-			<value>5</value>
-		</property>
-		<property name="initialPoolSize">
-			<value>2</value>
-		</property>
-		<property name="maxIdleTime">
-			<value>60</value>
-		</property>
-		<property name="acquireIncrement">
-			<value>1</value>
-		</property>
-		<property name="idleConnectionTestPeriod">
-			<value>60</value>
-		</property>
-		<property name="preferredTestQuery" value="SELECT 1 FROM DUAL"></property>
-		<property name="testConnectionOnCheckin" value="true"></property>
-		<property name="testConnectionOnCheckout" value="false"></property>
-		<property name="acquireRetryAttempts">
-			<value>10</value>
-		</property>
-	</bean>
-
-	<bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-	<tx:annotation-driven transaction-manager="transactionManager" />
-
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml" />
-	</bean>
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.zyf.springmybatis.dao" />
-		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
-	</bean>
+   <!--  <bean id="dataSourceMybatis"
+        class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName">
+            <value>com.mysql.jdbc.Driver</value>
+        </property>
+        <property name="url">
+            <value><![CDATA[jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8]]></value>
+        </property>
+        <property name="username">
+            <value>sample</value>
+        </property>
+        <property name="password">
+            <value>sample</value>
+        </property>
+    </bean>
+    <bean id="dataSourceSpring"
+        class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName">
+            <value>com.mysql.jdbc.Driver</value>
+        </property>
+        <property name="url">
+            <value><![CDATA[jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8]]></value>
+        </property>
+        <property name="username">
+            <value>sample</value>
+        </property>
+        <property name="password">
+            <value>sample</value>
+        </property>
+    </bean> -->
+    <bean id="dataSourceSpring" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+        destroy-method="close">
+        <property name="driverClass">
+            <value>com.mysql.jdbc.Driver</value>
+        </property>
+        <property name="jdbcUrl">
+            <value><![CDATA[jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8]]></value>
+        </property>
+        <property name="user">
+            <value>sample</value>
+        </property>
+        <property name="password">
+            <value>sample</value>
+        </property>
+        <property name="minPoolSize">
+            <value>2</value>
+        </property>
+        <property name="maxPoolSize">
+            <value>5</value>
+        </property>
+        <property name="initialPoolSize">
+            <value>2</value>
+        </property>
+        <property name="maxIdleTime">
+            <value>60</value>
+        </property>
+        <property name="acquireIncrement">
+            <value>1</value>
+        </property>
+        <property name="idleConnectionTestPeriod">
+            <value>60</value>
+        </property>
+        <property name="preferredTestQuery" value="SELECT 1 FROM DUAL"></property>
+        <property name="testConnectionOnCheckin" value="true"></property>
+        <property name="testConnectionOnCheckout" value="false"></property>
+        <property name="acquireRetryAttempts">
+            <value>10</value>
+        </property>
+    </bean>
+    <bean id="transactionManager"
+        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSourceSpring" />
+    </bean>
+    <tx:annotation-driven transaction-manager="transactionManager" />
+    <!--mybatis config 
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSourceMybatis" />
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml" />
+    </bean>
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.zyf.springmybatis.dao" />
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>-->
+    <!-- spring jdbc config -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSourceSpring" />
+    </bean>
 </beans>
