@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Select;
 
 import com.zyf.springmybatis.po.TestPO;
 
-public interface TestDao {
+public interface TestIbatisDao {
 
 	@Insert("INSERT INTO TEST (remark) VALUES (#{remark}) ")
 	public void insert(TestPO testPO);
