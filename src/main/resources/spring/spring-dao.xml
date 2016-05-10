@@ -17,13 +17,13 @@
             <value>com.mysql.jdbc.Driver</value>
         </property>
         <property name="jdbcUrl">
-            <value><![CDATA[jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8]]></value>
+            <value><![CDATA[jdbc:mysql://127.0.0.1:3307/test?useUnicode=true&characterEncoding=UTF-8]]></value>
         </property>
         <property name="user">
-            <value>sample</value>
+            <value>root</value>
         </property>
         <property name="password">
-            <value>sample</value>
+            <value>root</value>
         </property>
         <property name="minPoolSize">
             <value>2</value>

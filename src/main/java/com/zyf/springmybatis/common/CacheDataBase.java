@@ -3,7 +3,8 @@ package com.zyf.springmybatis.common;
 import java.io.File;
 import java.util.SortedMap;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.sleepycat.bind.serial.ClassCatalog;
 import com.sleepycat.bind.serial.SerialBinding;
@@ -18,7 +19,8 @@ import com.zyf.springmybatis.bean.ChannelInfo;
 
 public class CacheDataBase {
 
-    public static Logger log = Logger.getLogger("Cache");
+    private static final Logger logger = LoggerFactory
+        .getLogger(CacheDataBase.class);
     public static Environment env;
     public SortedMap map;
 
@@ -63,12 +65,12 @@ public class CacheDataBase {
                 dbConfig);
             this.map = new StoredSortedMap(this.db, keyBinding, dataBinding,
                 true);
-            CacheDataBase.log.info("Open Cache Success[" + this.cacheName
+            CacheDataBase.logger.info("Open Cache Success[" + this.cacheName
                 + "];Count:" + this.db.count());
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            CacheDataBase.log.fatal(this.cacheName + " Open Failure");
+            CacheDataBase.logger.error(this.cacheName + " Open Failure");
             return false;
         }
     }
@@ -110,11 +112,11 @@ public class CacheDataBase {
         File dir = new File(LookUpConfig.CacheDataBasePath);
         if (!dir.exists()) {// 如果指定的目录不存在，则自动创建
             if (dir.mkdirs()) {
-                CacheDataBase.log.info("Create Dirs：" + dir.getAbsolutePath()
-                    + " Success");
+                CacheDataBase.logger.info("Create Dirs："
+                    + dir.getAbsolutePath() + " Success");
             } else {
-                CacheDataBase.log.fatal("Create Dirs：" + dir.getAbsolutePath()
-                    + " Failure");
+                CacheDataBase.logger.error("Create Dirs："
+                    + dir.getAbsolutePath() + " Failure");
                 return null;
             }
         }

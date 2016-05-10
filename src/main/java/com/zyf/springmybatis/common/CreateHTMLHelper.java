@@ -11,16 +11,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.zyf.springmybatis.bean.UrlContentBean;
 
 public class CreateHTMLHelper {
-    private static final Logger log = Logger.getLogger(CreateHTMLHelper.class);
+    public static Logger log = LoggerFactory.getLogger(CreateHTMLHelper.class);
 
     /**
      * 生成html 详细页面

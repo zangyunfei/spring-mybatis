@@ -7,11 +7,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /** 属性文件读取工具 **/
 public class ConfigUtil {
-    public static Logger log = Logger.getLogger("ConfigUtil");
+    public static Logger log = LoggerFactory.getLogger("ConfigUtil");
     public static String separator = File.separator;
 
     /***
@@ -40,13 +41,13 @@ public class ConfigUtil {
             ConfigUtil.log.info("properties path:" + path);
             configFile = new File(path);
             if (configFile.exists() == false) {
-                ConfigUtil.log.fatal("Config file does not exist["
+                ConfigUtil.log.error("Config file does not exist["
                     + configFile.getAbsolutePath() + "]");
                 if (configFile.createNewFile()) {
                     ConfigUtil.log.info("Create Config File["
                         + configFile.getAbsolutePath() + "] Success");
                 } else {
-                    ConfigUtil.log.fatal("Create Config File["
+                    ConfigUtil.log.error("Create Config File["
                         + configFile.getAbsolutePath() + "] Failed");
                     return null;
                 }

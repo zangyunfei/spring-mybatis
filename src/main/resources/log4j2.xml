@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="180"
+	packages="cn.youcredit.common.log">
+	<properties>
+		<property name="LOG_HOME">d:/logs</property>
+		<property name="PATTERN">%-5level^|%d{ISO8601}^|thread^|%loginfo%n
+		</property>
+		<property name="CONSOLE_PATTERN">%d{HH:mm:ss,SSS} %-5level [%class.%method] (%t) %msg%n
+		</property>
+	</properties>
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="${CONSOLE_PATTERN}" />
+		</Console>
+		<!--info.log -->
+		<!-- When bufferedIO is true, this is the buffer size, the default is 8192 
+			bytes. -->
+		<RollingFile name="ThreadInfoRollingFile" fileName="${LOG_HOME}/info.log"
+			filePattern="${LOG_HOME}/info.log.%d{yyyy-MM-dd}" append="true"
+			bufferedIO="true">
+			<PatternLayout pattern="${PATTERN}" />
+			<Filters>
+				<ThresholdFilter level="INFO" onMatch="DENY"
+					onMismatch="ACCEPT" />
+			</Filters>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"
+					modulate="true" />
+			</Policies>
+		</RollingFile>
+        <!--warn.log -->
+		 <RollingFile name="ThreadWarnRollingFile" fileName="${LOG_HOME}/warn.log"
+			filePattern="${LOG_HOME}/warn.log.%d{yyyy-MM-dd}" append="true"
+			bufferedIO="true">
+			<PatternLayout pattern="${PATTERN}" />
+			<Filters>
+				<ThresholdFilter level="WARN" onMatch="DENY"
+					onMismatch="ACCEPT" />
+			</Filters>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"
+					modulate="true" />
+			</Policies>
+		</RollingFile>
+		<!--error.log -->
+		<RollingFile name="ThreadErrorRollingFile" fileName="${LOG_HOME}/error.log"
+			filePattern="${LOG_HOME}/error.log.%d{yyyy-MM-dd}" append="true"
+			bufferedIO="true">
+			<PatternLayout pattern="${PATTERN}" />
+			<Filters>
+				<ThresholdFilter level="ERROR" onMatch="ACCEPT"
+					onMismatch="DENY" />
+			</Filters>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"
+					modulate="true" />
+			</Policies>
+		</RollingFile>
+		<!--异步appender -->
+		<Async name="ThreadAsyncAppender" includeLocation="true">
+			<AppenderRef ref="ThreadInfoRollingFile" />
+			 <AppenderRef ref="ThreadWarnRollingFile" />
+			<AppenderRef ref="ThreadErrorRollingFile" />
+		</Async>
+	
+        <!-- 警告日志 appender -->
+        <!--<Async name="ThreadWarnAsyncAppender" includeLocation="true">
+            <AppenderRef ref="ThreadWarnRollingFile" />
+        </Async>-->
+	</Appenders>
+	<Loggers>
+		<!--OFF 0 -->
+		<!--FATAL 100 -->
+		<!--ERROR 200 -->
+		<!--WARN 300 -->
+		<!--INFO 400 -->
+		<!--DEBUG 500 -->
+		<!--TRACE 600 -->
+		<!--ALL Integer.MAX_VALUE -->
+		<Root level="INFO" includeLocation="true">
+			<AppenderRef ref="ThreadAsyncAppender" />
+			<AppenderRef ref="Console" />
+		</Root>
+	</Loggers>
+</Configuration>
