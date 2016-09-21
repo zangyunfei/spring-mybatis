@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration monitorInterval="180" packages="cn.youcredit.common.log">
+<Configuration monitorInterval="180" packages="cn.zyf">
 	<properties>
 		<property name="LOG_HOME">d:/logs</property>
 		<property name="PATTERN">%-5level^|%d{ISO8601}^|canal^|%loginfo%n

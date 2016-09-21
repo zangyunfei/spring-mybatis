@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.zyf.springmybatis.common.log.LogInfoHelper;
 import com.zyf.springmybatis.dao.TestIbatisDao;
 import com.zyf.springmybatis.dao.TestSpringJdbcDao;
 import com.zyf.springmybatis.po.TestPO;
@@ -38,8 +39,6 @@ public class TestController {
     @RequestMapping("/log4j")
     @ResponseBody
     public void log4j(@RequestParam(value = "message") String message) {
-        TestController.log.info("info  info:" + message);
-        TestController.log.warn("warn  warn:" + message);
-        TestController.log.error("error  error:" + message);
+        LogInfoHelper.info(message);
     }
 }

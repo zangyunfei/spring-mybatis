@@ -1,7 +1,3 @@
-/**
- * Copyright(c) 2011-2012 by YouCredit Inc.
- * All Rights Reserved
- */
 package com.zyf.springmybatis.common;
 
 import java.text.DateFormat;
